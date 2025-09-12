@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/output.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Crypto Gig</title>
+  </head>
+
+  <style>
+    * {
+      font-family: "Poppins", sans-serif;
+    }
+  </style>
+  <body class="bg-white text-gray-900">
+    <nav
+      class="w-full bg-gray-800 border-b border-gray-200 shadow-sm fixed top-0 left-0 z-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-center h-16 items-center">
+          <div class="flex justify-center space-x-15">
+            <a
+              href="index.html"
+              class="flex items-center space-x-1 text-gray-200 hover:text-cyan-600"
+              ><img src="svgs/solid/home-alt.svg" alt="" class="w-5 h-5" />
+              <span>Home</span></a
+            >
+            <a
+              href="rates.html"
+              class="flex items-center space-x-1 text-gray-200 hover:text-cyan-600"
+              ><img src="svgs/solid/chart-diagram.svg" alt="" class="w-5 h-5" />
+              <span>Rates</span></a
+            >
+            <a
+              href="index.html"
+              class="flex items-center space-x-1 text-gray-200 hover:text-cyan-600"
+              ><img src="svgs/solid/id-card-alt.svg" alt="" class="w-5 h-5" />
+              <span>Cards</span></a
+            >
+            <a
+              href="index.html"
+              class="flex items-center space-x-1 text-gray-200 hover:text-cyan-600"
+              ><img src="svgs/solid/user-alt.svg" alt="" class="w-5 h-5" />
+              <span>Account</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Balance -->
+    <section
+      class="max-w-3x1 w-full mx-auto mt-24 p-6 bg-gray-950 text-white shadow-lg min-h-110 min-w-120"
+    >
+      <div class="flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+          <div
+            class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center"
+          >
+            <img src="svgs/solid/user-tie.svg" alt="" class="w-5 h-5" />
+          </div>
+          <div class="w-px h-8 bg-gray-500"></div>
+          <button
+            class="w-8 h-8 rounded-full bg-gray-200 text-gray-200 flex items-center justify-center cursor-pointer hover:bg-gray-300 transition"
+          >
+            <img src="svgs/solid/bell.svg" alt="" class="w-5 h-5" />
+          </button>
+        </div>
+        <span
+          class="bg-blue-400 text-gray-900 text-sm px-3 py-1 rounded-full flex items-center space-x-2"
+        >
+          <span>ID: daichi</span>
+          <img
+            src="svgs/solid/copy.svg"
+            alt="Copy"
+            class="w-4 h-4 cursor-pointer"
+          />
+        </span>
+      </div>
+      <div class="mb-4 text-center justify-center mt-32">
+        <div class="flex items-center justify-center">
+          <h2 class="text-3xl">Total Balance</h2>
+
+          <button
+            class="w-6 h-6 flex items-center justify-center cursor-pointer hover:opacity-75"
+          >
+            <img src="svgs/solid/eye.svg" class="ml-4 w-5 h-5" alt="" />
+          </button>
+        </div>
+        <p class="text-2xl font-bold text-center">$1,250.00</p>
+      </div>
+      <div style="border: 0.4px solid #333; margin-bottom: 2rem"></div>
+      <div class="flex space-x-4 mt-4">
+        <button
+          class="flex-1 bg-gray-600 hover:bg-gray-800 flex items-center justify-center space-x-2 text-white font-semibold py-3 rounded-lg cursor-pointer transition-all"
+        >
+          <img src="svgs/solid/plus.svg" class="w-4 h-4 mr-3" alt="" />
+          Deposit
+        </button>
+        <button
+          class="flex-1 bg-gray-600 hover:bg-gray-800 flex items-center justify-center space-x-2 text-white font-semibold py-2 rounded-lg cursor-pointer transition-all"
+        >
+          <img src="svgs/solid/arrow-up.svg" class="w-4 h-4 mr-3" alt="" />
+          Transfer
+        </button>
+      </div>
+    </section>
+
+    <!-- Utilities -->
+    <!-- <section
+      class="flex justify-evenly mb-6 mt-10 gap-6 text-center items-center w-full"
+    >
+      <div class="flex gap-8 items-center px-22">
+        <div
+          class="flex flex-col items-center transition transform hover:scale-110 hover:-translte-y-1 duration-300"
+        >
+          <div
+            class="w-12 h-12 rounded-full cursor-pointer bg-blue-300 flex items-center justify-center transition-colors duration-300 hover:bg-blue-500"
+          >
+            <img src="/svgs/solid/phone.svg" class="w-4 h-4" alt="" />
+          </div>
+          <p class="text-sm mt-1">Airtime</p>
+        </div>
+        <div
+          class="flex flex-col items-center text-center transition transform hover:scale-110 hover:-translate-y-1 duration-300"
+        >
+          <div
+            class="w-12 h-12 rounded-full cursor-pointer bg-orange-300 flex items-center justify-center transition-colors duration-300 hover:bg-orange-500"
+          >
+            <img src="/svgs/solid/wifi-3.svg" class="w-4 h-4" alt="" />
+          </div>
+          <p class="text-sm mt-1">Data</p>
+        </div>
+        <div
+          class="flex flex-col items-center text-center transition transform hover:scale-110 hover:-translate-y-1 duration-300"
+        >
+          <div
+            class="w-12 h-12 rounded-full cursor-pointer bg-green-300 flex items-center justify-center transition-colors duration-300 hover:bg-green-500"
+          >
+            <img src="/svgs/solid/tv-alt.svg" class="w-4 h-4" alt="" />
+          </div>
+          <p class="text-sm mt-1">TV</p>
+        </div>
+        <div
+          class="flex flex-col items-center text-center transition transform hover:scale-110 hover:-translate-y-1 duration-300"
+        >
+          <div
+            class="w-12 h-12 cursor-pointer rounded-full bg-blue-400 flex items-center justify-center transition-colors duration-300 hover:bg-blue-600"
+          >
+            <img src="/svgs/solid/lightbulb.svg" class="w-4 h-4" alt="" />
+          </div>
+          <p class="text-sm mt-1">Electricity</p>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Transactions -->
+    <!-- <div
+      style="
+        border: 0.2px solid #8f8c8c;
+        width: 100%;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+      "
+    ></div> -->
+    <section class="max-w-3x1 w-full mx-auto bg-white px-4 mt-5 md:px-.5">
+      <div class="flex justify-between items-center mb-2">
+        <h2 class="font-semibold">Transactions</h2>
+        <a href="#" class="text-black text-sm font-bold">View all</a>
+      </div>
+      <div class="flex justify-between">
+        <div class="flex justify-between items-center py-3">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-full bg-gray-200 text-center flex items-center justify-center"
+            >
+              <img
+                src="svgs/solid/bank.svg"
+                class="w-5 h-5 text-center"
+                alt=""
+              />
+            </div>
+            <div>
+              <p class="font-medium text-sm">Ekeanyanwu David</p>
+              <p class="text-xs text-gray-500">Bank &centerdot; Aug 27</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-red-600 font-medium mt-3">- N29,020.20</p>
+      </div>
+
+      <div class="flex justify-between items-center py-3">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-full bg-emerald-400 flex items-center justify-center"
+          >
+            <img src="svgs/solid/usd.svg" class="w-5 h-5 text-center" alt="" />
+          </div>
+          <div>
+            <p class="font-medium text-sm">19.259699 USDT</p>
+            <p class="text-xs text-gray-500">Deposit &centerdot; Aug 27</p>
+          </div>
+        </div>
+        <p class="text-green-600 font-medium mt-2">+ N29,373.81</p>
+      </div>
+      <div class="flex justify-between items-center py-3">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center"
+          >
+            <img src="svgs/solid/bank.svg" class="w-5 h-5 text-center" alt="" />
+          </div>
+          <div>
+            <p class="font-medium text-sm">Raphael Ajemina</p>
+            <p class="text-xs text-gray-500">Bank &centerdot; Aug 23</p>
+          </div>
+        </div>
+        <p class="text-red-600 font-medium mt-2">- N29,373.81</p>
+      </div>
+    </section>
+  </body>
+  <style>
+    * {
+      font-family: "Poppins", sans-serif;
+    }
+  </style>
+</html>

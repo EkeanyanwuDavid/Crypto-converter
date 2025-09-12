@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rates</title>
+    <link rel="stylesheet" href="src/output.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    * {
+      font-family: "Poppins", sans-serif;
+    }
+  </style>
+  <body class="bg-white text-black">
+    <nav
+      class="w-full bg-gray-800 border-b border-gray-200 shadow-sm fixed top-0 left-0 z-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-center h-16 items-center">
+          <div class="flex justify-center space-x-15">
+            <a
+              href="index.html"
+              class="flex items-center space-x-1 text-gray-200 hover:text-cyan-600"
+              ><img src="svgs/solid/home-alt.svg" alt="" class="w-5 h-5" />
+              <span>Home</span></a
+            >
+            <a
+              href="rates.html"
+              class="flex items-center space-x-1 text-gray-200 hover:text-cyan-600"
+              ><img src="svgs/solid/chart-diagram.svg" alt="" class="w-5 h-5" />
+              <span>Rates</span></a
+            >
+            <a
+              href="index.html"
+              class="flex items-center space-x-1 text-gray-200 hover:text-cyan-600"
+              ><img src="svgs/solid/id-card-alt.svg" alt="" class="w-5 h-5" />
+              <span>Cards</span></a
+            >
+            <a
+              href="index.html"
+              class="flex items-center space-x-1 text-gray-200 hover:text-cyan-600"
+              ><img src="svgs/solid/user-alt.svg" alt="" class="w-5 h-5" />
+              <span>Account</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Rates -->
+    <section class="max-w-3xl mx-auto w-full min-h-100 pt-24 px-4">
+      <!-- Links -->
+      <div class="flex justify-center mb-4">
+        <button
+          class="px-6 py-3 font-semibold border-b-4 border-black text-black bg-white hover:bg-cyan-50 focus:outline-none transition"
+        >
+          Rates
+        </button>
+        <button
+          class="px-6 py-3 font-semibold text-gray-700 border-b-0 bg-white hover:bg-cyan-50 focus:outline-none transition"
+        >
+          Calculator
+        </button>
+      </div>
+
+      <!-- Refreshes -->
+      <div
+        class="bg-gray-200 py-4 w-full flex flex-col items-center rounded shadow"
+      >
+        <p class="text-gray-700 text-sm">Rate refreshes in</p>
+        <p class="font-bold text-3xl text-gray-900">00:00</p>
+      </div>
+
+      <!-- Currencies -->
+      <div class="space-y-4 mt-8">
+        <div class="flex items-center bg-white rounded shadow p-4">
+          <img
+            src="svgs/brands/bitcoin.svg"
+            class="w-8 h-8 mr-4"
+            alt="Bitcoin"
+          />
+          <div class="flex-1">
+            <div class="font-bold">
+              Bitcoin <span class="text-gray-400 text-sm">BTC</span>
+            </div>
+            <div class="text-gray-600">0.1234</div>
+          </div>
+          <div class="font-semibold text-black">$6,500</div>
+        </div>
+        <div class="flex items-center bg-white rounded shadow p-4">
+          <img src="svgs/solid/usd.svg" class="w-8 h-8 mr-4" alt="USD" />
+          <div class="flex-1">
+            <div class="font-bold">
+              USDT <span class="text-gray-400 text-sm">USD</span>
+            </div>
+            <div class="text-gray-600">0.1234</div>
+          </div>
+          <div class="font-semibold text-black">$6,500</div>
+        </div>
+        <div class="flex items-center bg-white rounded shadow p-4">
+          <img
+            src="svgs/brands/ethereum.svg"
+            class="w-8 h-8 mr-4"
+            alt="ethereum"
+          />
+          <div class="flex-1">
+            <div class="font-bold">
+              Ethereum <span class="text-gray-400 text-sm">Ethereum</span>
+            </div>
+            <div class="text-gray-600">0.1234</div>
+          </div>
+          <div class="font-semibold text-black">$9,500</div>
+        </div>
+        <div class="flex items-center bg-white rounded shadow p-4">
+          <img
+            src="svgs/brands/airbnb.svg"
+            class="w-8 h-8 mr-4"
+            alt="ethereum"
+          />
+          <div class="flex-1">
+            <div class="font-bold">
+              BNB <span class="text-gray-400 text-sm">BNB</span>
+            </div>
+            <div class="text-gray-600">0.1234</div>
+          </div>
+          <div class="font-semibold text-black">$9,500</div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
