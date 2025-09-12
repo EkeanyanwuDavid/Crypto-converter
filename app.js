@@ -18,3 +18,5 @@ function startContinuousCounter() {
 }
 
 document.addEventListener("DOMContentLoaded", startContinuousCounter);
+
+// Rate API Checker
