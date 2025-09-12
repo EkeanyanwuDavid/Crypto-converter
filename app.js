@@ -75,6 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         resultDiv.textContent = "Enter a valid amount.";
       }
+      setTimeout(() => {
+        resultDiv.textContent = "";
+      }, 10000);
     });
   }
 });
