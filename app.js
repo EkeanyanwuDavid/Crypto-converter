@@ -35,8 +35,6 @@ function updateCounter() {
 }
 
 function refreshRates() {
-  // TODO: Add your rate refresh logic here (API call, etc.)
-  // For now, just log to console
   console.log("Rates refreshed!");
 }
 
