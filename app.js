@@ -80,4 +80,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Rate API Checker
+// Burger menu toggle logic
+document.addEventListener("DOMContentLoaded", function () {
+  const burgerBtn = document.getElementById("burger-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const closeMenu = document.getElementById("close-menu");
+  if (burgerBtn && mobileMenu && closeMenu) {
+    burgerBtn.addEventListener("click", function () {
+      mobileMenu.classList.remove("hidden");
+    });
+    closeMenu.addEventListener("click", function () {
+      mobileMenu.classList.add("hidden");
+    });
+  }
+});
