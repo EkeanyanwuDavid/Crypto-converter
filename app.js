@@ -109,3 +109,42 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+// Mobile user icon dropdown toggle with timeout
+const mobileUserBtn = document.getElementById("mobile-user-btn");
+const mobileUserDropdown = document.getElementById("mobile-user-dropdown");
+let mobileDropdownTimeout;
+if (mobileUserBtn && mobileUserDropdown) {
+  mobileUserBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mobileUserDropdown.classList.toggle("opacity-0");
+    mobileUserDropdown.classList.toggle("pointer-events-none");
+    if (!mobileUserDropdown.classList.contains("opacity-0")) {
+      clearTimeout(mobileDropdownTimeout);
+      mobileDropdownTimeout = setTimeout(() => {
+        mobileUserDropdown.classList.add("opacity-0", "pointer-events-none");
+      }, 2000); // stays open for 2 seconds
+    }
+  });
+  // Hide dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (
+      !mobileUserBtn.contains(e.target) &&
+      !mobileUserDropdown.contains(e.target)
+    ) {
+      mobileUserDropdown.classList.add("opacity-0", "pointer-events-none");
+      clearTimeout(mobileDropdownTimeout);
+    }
+  });
+  // Allow clicking sign out
+  if (mobileUserDropdown) {
+    mobileUserDropdown.addEventListener("mouseenter", () => {
+      clearTimeout(mobileDropdownTimeout);
+    });
+    mobileUserDropdown.addEventListener("mouseleave", () => {
+      mobileDropdownTimeout = setTimeout(() => {
+        mobileUserDropdown.classList.add("opacity-0", "pointer-events-none");
+      }, 1000);
+    });
+  }
+}
