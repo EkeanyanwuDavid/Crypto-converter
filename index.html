@@ -86,14 +86,36 @@
             </div>
           </div>
           <!-- Burger Icon -->
-          <button
-            id="burger-btn"
-            class="md:hidden flex flex-col justify-center items-center w-10 h-10 focus:outline-none"
-          >
-            <span class="block w-6 h-0.5 bg-gray-700 mb-1"></span>
-            <span class="block w-6 h-0.5 bg-gray-700 mb-1"></span>
-            <span class="block w-6 h-0.5 bg-gray-700"></span>
-          </button>
+          <div class="flex items-center md:hidden space-x-2">
+            <!-- User Icon with Dropdown (Mobile) -->
+            <div class="relative group">
+              <div
+                class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer"
+                id="mobile-user-btn"
+              >
+                <img src="svgs/solid/user-tie.svg" alt="User" class="w-5 h-5" />
+              </div>
+              <div
+                class="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded-lg shadow-lg py-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-50"
+                id="mobile-user-dropdown"
+              >
+                <button
+                  class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                >
+                  Sign out
+                </button>
+              </div>
+            </div>
+            <!-- Burger Icon -->
+            <button
+              id="burger-btn"
+              class="flex flex-col justify-center items-center w-10 h-10 focus:outline-none"
+            >
+              <span class="block w-6 h-0.5 bg-gray-700 mb-1"></span>
+              <span class="block w-6 h-0.5 bg-gray-700 mb-1"></span>
+              <span class="block w-6 h-0.5 bg-gray-700"></span>
+            </button>
+          </div>
         </div>
       </div>
       <!-- Mobile Menu -->
@@ -213,7 +235,7 @@
       class="flex justify-evenly mb-6 mt-10 gap-6 text-center items-center w-full"
     >
       <div class="flex gap-8 items-center px-22">
-        <div
+    <h2 class="font-semibold text-lg">Transactions</h2>
           class="flex flex-col items-center transition transform hover:scale-110 hover:-translte-y-1 duration-300"
         >
           <div
@@ -265,7 +287,9 @@
         margin-top: 2rem;
       "
     ></div> -->
-    <section class="max-w-3x1 w-full mx-auto bg-white px-4 mt-5 md:px-.5">
+    <section
+      class="max-w-3x1 w-full mx-auto bg-white px-4 mt-5 md:px-.5 ml-4 sm:ml-0"
+    >
       <div class="flex justify-between items-center mb-4">
         <h2 class="font-semibold text-lg">Transactions</h2>
         <a href="#" class="text-cyan-700 text-sm font-bold hover:underline"
