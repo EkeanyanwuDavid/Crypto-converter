@@ -61,6 +61,21 @@ document.addEventListener("DOMContentLoaded", () => {
     USDT: 1500, // 1 USDT = 1,500 NGN
   };
 
+  // Update calculator input placeholder with rate
+  const cryptoType = document.getElementById("crypto-type");
+  const cryptoAmount = document.getElementById("crypto-amount");
+  function updatePlaceholder() {
+    if (cryptoType && cryptoAmount) {
+      const type = cryptoType.value;
+      const rate = rates[type];
+      cryptoAmount.placeholder = `1 ${type} = ₦${rate.toLocaleString()}`;
+    }
+  }
+  if (cryptoType && cryptoAmount) {
+    cryptoType.addEventListener("change", updatePlaceholder);
+    updatePlaceholder();
+  }
+
   const calcBtn = document.getElementById("calc-btn");
   if (calcBtn) {
     calcBtn.addEventListener("click", function () {
