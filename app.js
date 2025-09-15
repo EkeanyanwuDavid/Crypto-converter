@@ -53,31 +53,25 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateRatesUI() {
-    const btcRate = document.querySelector(
-      "#rates-section .font-semibold.text-black"
-    );
-    if (btcRate) btcRate.textContent = `1 BTC ≈ ₦${rates.BTC.toLocaleString()}`;
-    const ethRate = document.querySelectorAll(
-      "#rates-section .font-semibold.text-black"
-    )[2];
-    if (ethRate) ethRate.textContent = `1 ETH ≈ ₦${rates.ETH.toLocaleString()}`;
-    const bnbRate = document.querySelectorAll(
-      "#rates-section .font-semibold.text-black"
-    )[3];
-    if (bnbRate) bnbRate.textContent = `1 BNB ≈ ₦${rates.BNB.toLocaleString()}`;
-    const usdtRate = document.querySelectorAll(
-      "#rates-section .font-semibold.text-black"
-    )[1];
-    if (usdtRate)
-      usdtRate.textContent = `1 USDT ≈ ₦${rates.USDT.toLocaleString()}`;
-    // Update calculator placeholder
-    const cryptoType = document.getElementById("crypto-type");
-    const cryptoAmount = document.getElementById("crypto-amount");
-    if (cryptoType && cryptoAmount) {
-      const type = cryptoType.value;
-      const rate = rates[type];
-      cryptoAmount.placeholder = `1 ${type} = ₦${rate.toLocaleString()}`;
-    }
+    const coins = [
+      { alt: "Bitcoin", symbol: "BTC" },
+      { alt: "USD", symbol: "USDT" },
+      { alt: "ethereum", symbol: "ETH" },
+      { alt: "bnb", symbol: "BNB" },
+    ];
+
+    coins.forEach(({ alt, symbol }) => {
+      const rateElement = document
+        .querySelector(`#rates-section img[alt='${alt}']`)
+        ?.closest(".flex")
+        .querySelector(".font-semibold.text-black");
+
+      if (rateElement) {
+        rateElement.textContent = `1 ${symbol} ≈ ₦${rates[
+          symbol
+        ].toLocaleString()}`;
+      }
+    });
   }
 
   async function refreshRates() {
