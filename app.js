@@ -1,67 +1,120 @@
 // Toggle Rates/Calculator tab and active border
 document.addEventListener("DOMContentLoaded", () => {
   const ratesBtn = document.getElementById("rates-btn");
-  const calcBtn = document.getElementById("calculator-btn");
+  const calculatorBtn = document.getElementById("calculator-btn");
   const ratesSection = document.getElementById("rates-section");
   const calculatorSection = document.getElementById("calculator-section");
-  if (ratesBtn && calcBtn && ratesSection && calculatorSection) {
+  if (ratesBtn && calculatorBtn && ratesSection && calculatorSection) {
     ratesBtn.addEventListener("click", function () {
       ratesBtn.classList.add("border-b-4", "border-black", "text-black");
       ratesBtn.classList.remove("border-b-0", "text-gray-700");
-      calcBtn.classList.remove("border-b-4", "border-black", "text-black");
-      calcBtn.classList.add("border-b-0", "text-gray-700");
+      calculatorBtn.classList.remove(
+        "border-b-4",
+        "border-black",
+        "text-black"
+      );
+      calculatorBtn.classList.add("border-b-0", "text-gray-700");
       ratesSection.classList.remove("hidden");
       calculatorSection.classList.add("hidden");
     });
-    calcBtn.addEventListener("click", function () {
-      calcBtn.classList.add("border-b-4", "border-black", "text-black");
-      calcBtn.classList.remove("border-b-0", "text-gray-700");
+    calculatorBtn.addEventListener("click", function () {
+      calculatorBtn.classList.add("border-b-4", "border-black", "text-black");
+      calculatorBtn.classList.remove("border-b-0", "text-gray-700");
       ratesBtn.classList.remove("border-b-4", "border-black", "text-black");
       ratesBtn.classList.add("border-b-0", "text-gray-700");
       calculatorSection.classList.remove("hidden");
       ratesSection.classList.add("hidden");
     });
   }
-});
-let countdown = 60;
 
-function updateCounter() {
-  const counter = document.getElementById("rate-counter");
-  if (counter) {
-    const mins = String(Math.floor(countdown / 60)).padStart(2, "0");
-    const secs = String(countdown % 60).padStart(2, "0");
-    counter.textContent = `${mins}:${secs}`;
-  }
-}
-
-function refreshRates() {
-  console.log("Rates refreshed!");
-}
-
-function startCountdown() {
-  updateCounter();
-  setInterval(() => {
-    countdown--;
-    if (countdown < 0) {
-      refreshRates();
-      countdown = 60;
-    }
-    updateCounter();
-  }, 1000);
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  startCountdown();
-
-  // Calculator logic
-  const rates = {
-    BTC: 95000000, // 1 BTC = 95,000,000 NGN
-    ETH: 6000000, // 1 ETH = 6,000,000 NGN
-    BNB: 400000, // 1 BNB = 400,000 NGN
-    USDT: 1500, // 1 USDT = 1,500 NGN
+  // Rates logic
+  let rates = {
+    BTC: 95000000,
+    ETH: 6000000,
+    BNB: 400000,
+    USDT: 1500,
   };
 
-  // Update calculator input placeholder with rate
+  async function fetchCrypto() {
+    try {
+      const res = await fetch(
+        "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,tether&vs_currencies=ngn"
+      );
+      const data = await res.json();
+      rates.BTC = data.bitcoin.ngn;
+      rates.ETH = data.ethereum.ngn;
+      rates.BNB = data.binancecoin.ngn;
+      rates.USDT = data.tether.ngn;
+      return true;
+    } catch (error) {
+      console.error("API fetch error:", error);
+      return false;
+    }
+  }
+
+  function updateRatesUI() {
+    const btcRate = document.querySelector(
+      "#rates-section .font-semibold.text-black"
+    );
+    if (btcRate) btcRate.textContent = `1 BTC ≈ ₦${rates.BTC.toLocaleString()}`;
+    const ethRate = document.querySelectorAll(
+      "#rates-section .font-semibold.text-black"
+    )[2];
+    if (ethRate) ethRate.textContent = `1 ETH ≈ ₦${rates.ETH.toLocaleString()}`;
+    const bnbRate = document.querySelectorAll(
+      "#rates-section .font-semibold.text-black"
+    )[3];
+    if (bnbRate) bnbRate.textContent = `1 BNB ≈ ₦${rates.BNB.toLocaleString()}`;
+    const usdtRate = document.querySelectorAll(
+      "#rates-section .font-semibold.text-black"
+    )[1];
+    if (usdtRate)
+      usdtRate.textContent = `1 USDT ≈ ₦${rates.USDT.toLocaleString()}`;
+    // Update calculator placeholder
+    const cryptoType = document.getElementById("crypto-type");
+    const cryptoAmount = document.getElementById("crypto-amount");
+    if (cryptoType && cryptoAmount) {
+      const type = cryptoType.value;
+      const rate = rates[type];
+      cryptoAmount.placeholder = `1 ${type} = ₦${rate.toLocaleString()}`;
+    }
+  }
+
+  async function refreshRates() {
+    const success = await fetchCrypto();
+    updateRatesUI();
+    if (!success) {
+      // Optionally show error to user
+      // alert("Failed to fetch live rates. Showing last known values.");
+    }
+  }
+
+  // Countdown logic
+  let countdown = 60;
+  let countdownInterval;
+  function updateCounter() {
+    const counter = document.getElementById("rate-counter");
+    if (counter) {
+      const mins = String(Math.floor(countdown / 60)).padStart(2, "0");
+      const secs = String(countdown % 60).padStart(2, "0");
+      counter.textContent = `${mins}:${secs}`;
+    }
+  }
+  function startCountdown() {
+    clearInterval(countdownInterval);
+    countdown = 60;
+    updateCounter();
+    countdownInterval = setInterval(async () => {
+      countdown--;
+      if (countdown < 0) {
+        await refreshRates();
+        countdown = 60;
+      }
+      updateCounter();
+    }, 1000);
+  }
+
+  // Calculator logic
   const cryptoType = document.getElementById("crypto-type");
   const cryptoAmount = document.getElementById("crypto-amount");
   function updatePlaceholder() {
@@ -93,10 +146,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 10000);
     });
   }
-});
 
-// Burger menu toggle logic
-document.addEventListener("DOMContentLoaded", function () {
+  // Initial fetch and start countdown
+  refreshRates();
+  startCountdown();
+
+  // Burger menu toggle logic
   const burgerBtn = document.getElementById("burger-btn");
   const mobileMenu = document.getElementById("mobile-menu");
   const closeMenu = document.getElementById("close-menu");
@@ -108,43 +163,41 @@ document.addEventListener("DOMContentLoaded", function () {
       mobileMenu.classList.add("hidden");
     });
   }
-});
 
-// Mobile user icon dropdown toggle with timeout
-const mobileUserBtn = document.getElementById("mobile-user-btn");
-const mobileUserDropdown = document.getElementById("mobile-user-dropdown");
-let mobileDropdownTimeout;
-if (mobileUserBtn && mobileUserDropdown) {
-  mobileUserBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    mobileUserDropdown.classList.toggle("opacity-0");
-    mobileUserDropdown.classList.toggle("pointer-events-none");
-    if (!mobileUserDropdown.classList.contains("opacity-0")) {
-      clearTimeout(mobileDropdownTimeout);
-      mobileDropdownTimeout = setTimeout(() => {
-        mobileUserDropdown.classList.add("opacity-0", "pointer-events-none");
-      }, 2000); // stays open for 2 seconds
-    }
-  });
-  // Hide dropdown when clicking outside
-  document.addEventListener("click", (e) => {
-    if (
-      !mobileUserBtn.contains(e.target) &&
-      !mobileUserDropdown.contains(e.target)
-    ) {
-      mobileUserDropdown.classList.add("opacity-0", "pointer-events-none");
-      clearTimeout(mobileDropdownTimeout);
-    }
-  });
-  // Allow clicking sign out
-  if (mobileUserDropdown) {
-    mobileUserDropdown.addEventListener("mouseenter", () => {
-      clearTimeout(mobileDropdownTimeout);
+  // Mobile user icon dropdown toggle with timeout
+  const mobileUserBtn = document.getElementById("mobile-user-btn");
+  const mobileUserDropdown = document.getElementById("mobile-user-dropdown");
+  let mobileDropdownTimeout;
+  if (mobileUserBtn && mobileUserDropdown) {
+    mobileUserBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      mobileUserDropdown.classList.toggle("opacity-0");
+      mobileUserDropdown.classList.toggle("pointer-events-none");
+      if (!mobileUserDropdown.classList.contains("opacity-0")) {
+        clearTimeout(mobileDropdownTimeout);
+        mobileDropdownTimeout = setTimeout(() => {
+          mobileUserDropdown.classList.add("opacity-0", "pointer-events-none");
+        }, 2000);
+      }
     });
-    mobileUserDropdown.addEventListener("mouseleave", () => {
-      mobileDropdownTimeout = setTimeout(() => {
+    document.addEventListener("click", (e) => {
+      if (
+        !mobileUserBtn.contains(e.target) &&
+        !mobileUserDropdown.contains(e.target)
+      ) {
         mobileUserDropdown.classList.add("opacity-0", "pointer-events-none");
-      }, 1000);
+        clearTimeout(mobileDropdownTimeout);
+      }
     });
+    if (mobileUserDropdown) {
+      mobileUserDropdown.addEventListener("mouseenter", () => {
+        clearTimeout(mobileDropdownTimeout);
+      });
+      mobileUserDropdown.addEventListener("mouseleave", () => {
+        mobileDropdownTimeout = setTimeout(() => {
+          mobileUserDropdown.classList.add("opacity-0", "pointer-events-none");
+        }, 1000);
+      });
+    }
   }
-}
+});
