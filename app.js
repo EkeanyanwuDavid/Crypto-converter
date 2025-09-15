@@ -77,9 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
   async function refreshRates() {
     const success = await fetchCrypto();
     updateRatesUI();
+    updatePlaceholder();
     if (!success) {
-      // Optionally show error to user
-      // alert("Failed to fetch live rates. Showing last known values.");
+      console.error("Failed to fetch live rates. Showing last known values.");
     }
   }
 
